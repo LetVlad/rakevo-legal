@@ -89,7 +89,8 @@
     body:has(#privacy:target) .tabs a[href="#privacy"],
     body:not(:has(section.tab:target)) .tabs a[href="#privacy"],
     body:has(#delete:target) .tabs a[href="#delete"],
-    body:has(#support:target) .tabs a[href="#support"] {
+    body:has(#support:target) .tabs a[href="#support"],
+    body:has(#download:target) .tabs a[href="#download"] {
       color: var(--accent);
       border-bottom-color: var(--accent);
     }
@@ -110,7 +111,30 @@
     hr { margin: 40px 0; border: none; border-top: 1px solid var(--border); }
     .rtl { direction: rtl; text-align: right; }
     .rtl ul, .rtl ol { padding-left: 0; padding-right: 20px; }
+    .store-btn {
+      display: block;
+      margin: 12px 0;
+      padding: 14px 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: 600;
+      text-decoration: none;
+      color: #ffffff;
+      background: var(--accent);
+    }
+    .store-btn.alt { color: var(--accent); background: transparent; border: 1px solid var(--accent); }
   </style>
+  <script>
+    // #download on a phone → straight to that phone's store; desktop shows the tab with both buttons.
+    (function () {
+      if (location.hash !== "#download") return;
+      var ua = navigator.userAgent || "";
+      var isIOS = /iPhone|iPad|iPod/i.test(ua) ||
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+      if (isIOS) location.replace("https://apps.apple.com/il/app/rakevo/id6794580471");
+      else if (/Android/i.test(ua)) location.replace("https://play.google.com/store/apps/details?id=com.bumpcar2");
+    })();
+  </script>
 </head>
 <body>
   <header>
@@ -120,6 +144,7 @@
         <a href="#privacy">Privacy Policy</a>
         <a href="#delete">Delete Account</a>
         <a href="#support">Support</a>
+        <a href="#download">Download</a>
       </nav>
     </div>
   </header>
@@ -342,6 +367,16 @@
 
         <h2>יצירת קשר</h2>
         <p>אימייל לתמיכה: <a href="mailto:rakevoapp@gmail.com">rakevoapp@gmail.com</a> · ישראל</p>
+      </div>
+    </section>
+
+    <!-- ============ DOWNLOAD ============ -->
+    <section class="tab" id="download">
+      <div class="rtl" lang="he" dir="rtl">
+        <h1>הורידו את Rakevo</h1>
+        <p class="meta">כל מה שהרכב שלך צריך — באפליקציה אחת. חינם.</p>
+        <a class="store-btn" href="https://apps.apple.com/il/app/rakevo/id6794580471">App Store (iPhone)</a>
+        <a class="store-btn alt" href="https://play.google.com/store/apps/details?id=com.bumpcar2">Google Play (Android)</a>
       </div>
     </section>
   </main>
