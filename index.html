@@ -111,18 +111,18 @@
     hr { margin: 40px 0; border: none; border-top: 1px solid var(--border); }
     .rtl { direction: rtl; text-align: right; }
     .rtl ul, .rtl ol { padding-left: 0; padding-right: 20px; }
-    .store-btn {
-      display: block;
-      margin: 12px 0;
-      padding: 14px 20px;
-      border-radius: 10px;
-      text-align: center;
-      font-weight: 600;
-      text-decoration: none;
-      color: #ffffff;
-      background: var(--accent);
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+      margin: 28px 0;
     }
-    .store-btn.alt { color: var(--accent); background: transparent; border: 1px solid var(--accent); }
+    .badges a { display: block; line-height: 0; }
+    .badges .apple { height: 56px; }
+    /* Google's PNG has transparent padding baked in — taller image ≈ same visible height as Apple's */
+    .badges .google { height: 84px; margin: -14px -10px; }
   </style>
   <script>
     // #download on a phone → straight to that phone's store; desktop shows the tab with both buttons.
@@ -375,8 +375,10 @@
       <div class="rtl" lang="he" dir="rtl">
         <h1>הורידו את Rakevo</h1>
         <p class="meta">כל מה שהרכב שלך צריך — באפליקציה אחת. חינם.</p>
-        <a class="store-btn" href="https://apps.apple.com/il/app/rakevo/id6794580471">App Store (iPhone)</a>
-        <a class="store-btn alt" href="https://play.google.com/store/apps/details?id=com.bumpcar2">Google Play (Android)</a>
+        <div class="badges">
+          <a href="https://apps.apple.com/il/app/rakevo/id6794580471"><img class="apple" src="badges/app-store-he.svg" alt="הורידו ב-App Store" /></a>
+          <a href="https://play.google.com/store/apps/details?id=com.bumpcar2"><img class="google" src="badges/google-play-he.png" alt="זמין ב-Google Play" /></a>
+        </div>
       </div>
     </section>
   </main>
